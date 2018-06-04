@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="bin/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bin/highlight/styles/tomorrow.css">
+    <link rel="stylesheet" type="text/css" href="bin/style.css">
+</head>
+<body>
+	<div class="vue">
+		<blog judul='Catatan PHP dan MySQL'>
+
+Melacak lokasi MySQL
+
+```
+which mysql
+```
+
+Export database
+
+```
+mysqldump -u root -p psikoweb > psikoweb.sql
+```
+
+Masuk ke MySQL
+
+```
+mysql -u root -p
+```
+
+Menampilkan database
+
+```
+show databases;
+```
+
+Membuat database
+
+```
+create database psikoweb;
+```
+
+Memilih database
+
+```
+use psikoweb;
+```
+
+Membuat table
+
+```
+CREATE TABLE operator(
+    id VARCHAR (20) NOT NULL,
+    nama VARCHAR (50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE film (
+    id VARCHAR (20) NOT NULL,
+    judul VARCHAR (50) NOT NULL,
+    deskripsi TEXT,
+    rating VARCHAR (50) NOT NULL,
+    produksi VARCHAR(100) NOT NULL,
+    distributor VARCHAR(100) NOT NULL,
+    durasi INT NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE teater (
+    id VARCHAR (20) NOT NULL,
+    nama VARCHAR (50) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- foreign key: teater_id
+CREATE TABLE kursi (
+    id VARCHAR (20) NOT NULL,
+    nama VARCHAR (50) NOT NULL,
+    teater_id VARCHAR(20) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- foreign key: film_id, teater_id
+CREATE TABLE jadwal (
+    id VARCHAR (20) NOT NULL,
+    hari VARCHAR (50) NOT NULL,
+    jam VARCHAR(20) NOT NULL,
+    harga INT NOT NULL,
+    film_id VARCHAR(20) NOT NULL,
+    teater_id VARCHAR(20) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- foreign key: operator_id, jadwal_id, kursi_id, 
+CREATE TABLE transaksi (
+    id VARCHAR(20) NOT NULL,
+    operator_id VARCHAR(20) NOT NULL,
+    jadwal_id VARCHAR(20) NOT NULL,
+    kursi_id VARCHAR(20) NOT NULL,
+    jumlah_dibayar INT NOT NULL,
+    kembalian INT NOT NULL,
+    created_at DATETIME NOT NULL,
+    PRIMARY KEY (id)
+);
+```
+
+Menampilkan table
+
+```
+show tables;
+```
+
+Menghapus table
+
+```
+DROP TABLE transaksi;
+DROP TABLE jadwal;
+DROP TABLE kursi;
+DROP TABLE teater;
+DROP TABLE film;
+DROP TABLE operator;
+```
+
+Menghapus database
+
+```
+drop database bioskop;
+```
+
+Menampilkan form table
+
+```
+desc peserta;
+```
+
+Menambah Kolom Baru
+
+```
+ALTER TABLE nama_tabel ADD nama_kolom varchar (50) not null;
+```
+
+Insert data
+
+```
+INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('John', 'Doe', 'john@example.com')
+```
+
+&mdash; 3 Juni 2018
+
+		</blog>
+	</div>
+	<script type="text/javascript" src="bin/vue.min.js"></script>
+	<script type="text/javascript" src="bin/jquery.min.js"></script>
+    <script type="text/javascript" src="bin/marked.min.js"></script>
+	<script type="text/javascript" src="bin/highlight/highlight.pack.js"></script>
+	<script type="text/javascript" src="bin/ResizeSensor.min.js"></script>
+	<script type="text/javascript" src="bin/theia-sticky-sidebar.min.js"></script>
+	<script type="text/javascript" src="bin/app.js"></script>
+</body>
+</html>

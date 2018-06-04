@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="bin/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bin/highlight/styles/tomorrow.css">
+	<link rel="stylesheet" type="text/css" href="bin/style.css">
+</head>
+<body>
+	<div class="vue">
+		<blog judul='Download dan Upload Git Secara Otomatis'>
+
+# Persiapan
+
+```
+git config --global user.name username
+git config --global user.email email
+```
+
+# Linux
+
+## Download
+
+```
+git clone --depth=1 https://user:pass@gitlab.com/user/$1.git
+mv $1 "$1 (git)"
+```
+
+## Upload
+
+```
+while true
+    do
+        git status
+        git add -A .
+        git commit -m "oke"
+        git push
+        sleep 3m
+    done
+```
+
+# Windows
+
+## Download
+
+```
+@echo off
+title Download dari Gitlab
+
+set /p repo="Sebutkan nama repositori Gitlab: "
+
+git clone --depth=1 https://user:pass@gitlab.com/user/%repo%.git
+rename %repo% "%repo% (git)"
+pause
+```
+
+## Upload
+
+```
+@echo off
+title Upload
+
+:app
+git status
+git add -A .
+git commit -m "oke"
+git push
+
+timeout /t 180 /nobreak
+goto app
+```
+
+&mdash; 3 Juni 2018
+
+		</blog>
+	</div>
+	<script type="text/javascript" src="bin/vue.min.js"></script>
+	<script type="text/javascript" src="bin/jquery.min.js"></script>
+	<script type="text/javascript" src="bin/marked.min.js"></script>
+	<script type="text/javascript" src="bin/highlight/highlight.pack.js"></script>
+	<script type="text/javascript" src="bin/ResizeSensor.min.js"></script>
+	<script type="text/javascript" src="bin/theia-sticky-sidebar.min.js"></script>
+	<script type="text/javascript" src="bin/app.js"></script>
+</body>
+</html>
